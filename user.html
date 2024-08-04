@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hostel | User Entry</title>
+    <link rel="shortcut icon" href="hostel-icon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/user.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    
+    <style>
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            background-color: red;
+            padding:.2rem .5rem;
+            border-radius: .5rem;
+        }
+        .close:hover,
+        .close:focus {
+            color: red;
+            background-color: gainsboro;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="parent">
+      <h2>
+        <i
+          class="fa-solid fa-circle-arrow-left back"
+          onclick="history.back();"
+          title="Go Back"
+        ></i>
+        <i
+          class="fa-solid fa-home back"
+          onclick="location.href='Dashboard.html'"
+          title="Go Dashboard"
+          style="margin-left: 5rem"
+        ></i
+        ><span>User Entry Form</span
+        ><input id="search_user" type="button" value="Search" />
+      </h2>
+      <form>
+        <table>
+          <tr>
+            <td>
+              <label class="l_move" for="id">User Id </label>
+              <i class="fa-solid fa-id-card i1"></i>
+              <input
+                type="text"
+                name="emp_id"
+                id="id"
+                value=""
+                onfocus="$(this).siblings('label').css({'top':'0%'});"
+                onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});"
+              />
+              <span> </span>
+            </td>
+            <td>
+              <label class="l_move" for="name">Name</label>
+              <i class="fa-solid fa-user i1"></i>
+              <input
+                type="text"
+                id="name"
+                name="emp_name"
+                onfocus="$(this).siblings('label').css({'top':'0%'});"
+                onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});"
+              />
+              <span> </span>
+            </td>
+            <td>
+              <label class="l_move" for="contact">Contact Number</label>
+              <i class="fa-solid fa-phone i1"></i>
+              <input
+                type="text"
+                maxlength="10"
+                minlength="10"
+                name="contact"
+                id="contact"
+                onfocus="$(this).siblings('label').css({'top':'0%'});"
+                onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});"
+              />
+              <span></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="" class="l_fixed" style="left: 1rem">Gender : </label>
+              <br />
+              &nbsp; &nbsp; &nbsp;<input
+                type="radio"
+                name="gender"
+                value="Male"
+                id="male"
+                checked
+              />
+              <label for="male">Male</label> &nbsp; &nbsp; &nbsp;<input
+                type="radio"
+                name="gender"
+                value="Female"
+                id="female"
+              />
+              <label for="female">Female</label> &nbsp; &nbsp; &nbsp;<input
+                type="radio"
+                name="gender"
+                value="Other"
+                id="other"
+              />
+              <label for="other">Other</label>
+            </td>
+            <td>
+              <label class="l_fixed" for="dob">Date Of Birth</label>
+              <i class="fa-solid fa-calendar i1"></i>
+              <input type="date" name="dob" id="dob" />
+              <span> </span>
+            </td>
+            <td>
+              <label class="l_fixed" for="bloodgrp" hidden>Blood Group</label>
+              <select
+                name=""
+                id="bloodgrp"
+                onchange="$(this).siblings('label').removeAttr('hidden')"
+              >
+                <option value="">-----Select Blood Group-----</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label class="l_move" for="f_name">Father's Name</label>
+              <i class="fa-solid fa-user i1"></i>
+              <input
+                type="text"
+                name="father_name"
+                id="f_name"
+                onfocus="$(this).siblings('label').css({'top':'0%'});"
+                onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});"
+              />
+              <span></span>
+            </td>
+            <td>
+              <label class="l_move" for="m_name">Mother's Name</label>
+              <i class="fa-solid fa-user i1"></i>
+              <input
+                type="text"
+                name="father_name"
+                id="m_name"
+                onfocus="$(this).siblings('label').css({'top':'0%'});"
+                onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});"
+              />
+              <span></span>
+            </td>
+            <td>
+              <label class="l_move" for="p_contact"
+                >Parent Contact Number</label
+              >
+              <i class="fa-solid fa-phone i1"></i>
+              <input
+                type="text"
+                name="father_name"
+                maxlength="10"
+                minlength="10"
+                id="p_contact"
+                onfocus="$(this).siblings('label').css({'top':'0%'});"
+                onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});"
+              />
+              <span></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="pic" class="l_fixed">Photo</label>
+              <input
+                type="file"
+                id="pic"
+                name="emp_pic"
+                style="padding-top: 0.8rem; padding-left: 1.5rem"
+                accept="image/*"
+              />
+            </td>
+            <td>
+              <label class="l_move" for="aadhar">Aadhar Number</label>
+              <i class="fa-solid fa-id-card i1"></i>
+              <input
+                type="text"
+                name="aadhar"
+                maxlength="12"
+                minlength="12"
+                id="aadhar"
+                onfocus="$(this).siblings('label').css({'top':'0%'});"
+                onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});"
+              />
+              <span> </span>
+            </td>
+            <td>
+              <label class="l_move" for="street">Street</label>
+              <i class="fa-solid fa-street-view i1"></i>
+              <input
+                type="text"
+                name="street"
+                id="street"
+                onfocus="$(this).siblings('label').css({'top':'0%'});"
+                onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});"
+              />
+              <span> </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label class="l_move" for="dit">District, State</label>
+              <i class="fa-solid fa-building i1"></i>
+              <input
+                type="text"
+                name="dict"
+                id="dit"
+                onfocus="$(this).siblings('label').css({'top':'0%'});"
+                onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});"
+              />
+              <span> </span>
+            </td>
+            <td>
+              <label class="l_move" for="pin">Pincode</label>
+              <i class="fa-solid fa-location-pin i1"></i>
+              <input
+                type="text"
+                name="pin"
+                maxlength="6"
+                minlength="6"
+                id="pin"
+                onfocus="$(this).siblings('label').css({'top':'0%'});"
+                onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});"
+              />
+              <span> </span>
+            </td>
+            <td>
+              <label class="l_move" for="local_guard">Local Guardian </label>
+              <i class="fa-solid fa-user i1"></i>
+              <input
+                type="text"
+                name="father_name"
+                id="local_guard"
+                onfocus="$(this).siblings('label').css({'top':'0%'});"
+                onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});"
+              />
+              <span></span>
+            </td>
+          </tr>
+          <td>
+            <label class="l_move" for="local_guard_contact"
+              >Local Guardian Number</label
+            >
+            <i class="fa-solid fa-phone i1"></i>
+            <input
+              type="text"
+              name="father_name"
+              id="local_guard_contact"
+              onfocus="$(this).siblings('label').css({'top':'0%'});"
+              onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});"
+            />
+            <span></span>
+          </td>
+          <td colspan="2">
+            <label class="l_move" for="local_guard_addr"
+              >Local Guardian Address</label
+            >
+            <i class="fa-solid fa-map-location-dot i1"></i>
+            <input
+              type="text"
+              name="father_name"
+              id="local_guard_addr"
+              onfocus="$(this).siblings('label').css({'top':'0%'});"
+              onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});"
+            />
+            <span></span>
+          </td>
+          <tr>
+            <td colspan="3">
+              <div class="button">
+                <button
+                  id="submit_btn"
+                  type="submit"
+                  value="Submit"
+                  style="background-color: rgb(0, 255, 0); color: black"
+                >
+                  <i class="fa-solid fa-arrow-up-from-bracket"></i> &nbsp;
+                  Submit
+                </button>
+                <button
+                  type="reset"
+                  value="Reset"
+                  style="background-color: rgb(0, 208, 255); color: black"
+                >
+                  <i class="fa-solid fa-rotate-left"></i> Reset
+                </button>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="hostel-icon.png" alt="Image" style="max-width: 100%;">
+        </div>
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="scripts/user.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      var imageDataUrl = "";
+      var room_id = sessionStorage.getItem("user_details");
+      if (room_id) {
+        $.ajax({
+          method: "post",
+          url: "pythonfile/user.py",
+          data: {
+            what: "fetchUserUpdate",
+            userid: room_id,
+          },
+          success: function (data) {
+            console.log(data);
+            if (data.includes("data fetching successfully!!")) {
+              //sessionStorage.removeItem('user_details');
+              var data_val = data.split("&&");
+              $(".parent h2 span").html("User Details Update");
+              $("#id").val(data_val[0].trim());
+              $("#id").focus();
+              $("#id").attr("disabled", true);
+            $("#name").val(data_val[1].trim());
+            $("#name").focus();
+            $("#contact").val(data_val[2].trim());
+            $("#contact").focus();
+            $("#dob").val(data_val[4].trim());
+            if (data_val[3].trim()=='Male')
+                $('#male').prop('checked', true);
+            else if (data_val[4].trim()=='Female')
+                $('#female').prop('checked', true);
+            else if (data_val[4].trim()=='Other')
+                $('#other').prop('checked', true);
+            $("#bloodgrp").val(data_val[5].trim());
+            $("#bloodgrp").change();
+            $("#f_name").val(data_val[6].trim());
+            $("#f_name").focus();
+            $("#m_name").val(data_val[7].trim());
+            $("#m_name").focus();
+            $("#p_contact").val(data_val[8].trim());
+            $("#p_contact").focus();
+            $('#pic').after(`<a href="${data_val[9]}" class="view-image" style="float:right;">Preview</a>`);
+            $("#aadhar").val(data_val[10].trim());
+            $("#aadhar").focus();
+            $("#street").val(data_val[11].trim());
+            $("#street").focus();
+            $("#dit").val(data_val[12].trim());
+            $("#dit").focus();
+            $("#pin").val(data_val[13].trim());
+            $("#pin").focus();
+            $("#local_guard").val(data_val[14].trim());
+            $("#local_guard").focus();
+            $("#local_guard_contact").val(data_val[15].trim());
+            $("#local_guard_contact").focus();
+            $("#local_guard_addr").val(data_val[16].trim());
+            $("#local_guard_addr").focus();
+              $(".button").html(
+                '<button type="button" value="Submit" style="background-color: rgb(0, 255, 0); color: black" id="saveData" > <i class="fa-solid fa-arrow-up-from-bracket"></i> &nbsp; Update </button>'
+              );
+            } else {
+              swal("Error", "Something went wrong!", "error");
+            }
+          },
+        });
+        $("#pic").on("change", function (event) {
+          var file = event.target.files[0];
+          var reader = new FileReader();
+
+          reader.onload = function (event) {
+            imageDataUrl = event.target.result;
+          };
+
+          if (file) {
+            reader.readAsDataURL(file);
+          } else {
+            console.error("No file selected.");
+          }
+        });
+      }
+      $(document).on("click", "#saveData", function (e) {
+        e.preventDefault();
+        if(imageDataUrl==null || imageDataUrl==''){
+            imageDataUrl=$('#pic').siblings('a').attr('href');
+        }
+        $.ajax({
+          method: "post",
+          url: "pythonfile/user.py",
+          data: {
+            what: "savetheUserUpdate",
+            emp_id1: $("#id").val(),
+            emp_name1: $("#name").val(),
+            emp_contact1: $("#contact").val(),
+            emp_gender1: $('input[name="gender"]:checked').val(),
+            emp_dob1: $("#dob").val(),
+            emp_blood1: $("#bloodgrp").val(),
+            emp_father1: $("#f_name").val(),
+            emp_mother1: $("#m_name").val(),
+            emp_par_contact1: $("#p_contact").val(),
+            emp_photo1: imageDataUrl,
+            emp_aadhar1: $("#aadhar").val(),
+            emp_street1: $("#street").val(),
+            emp_dist_state1: $("#dit").val(),
+            emp_pincode1: $("#pin").val(),
+            emp_local_guard1: $("#local_guard").val(),
+            emp_local_guard_cont1: $("#local_guard_contact").val(),
+            emp_local_guard_addr1: $("#local_guard_addr").val(),
+          },
+          success: function (data) {
+            console.log(data);
+            if (data.includes("user details successfully updated")) {
+              swal({
+                title: "Success!",
+                text: "User Details updated successfully",
+                icon: "success",
+              }).then((willDelete) => {
+                if (willDelete) {
+                  sessionStorage.removeItem("user_details");
+                  location.reload();
+                }
+              });
+            } else {
+              swal({
+                title: "Failed!",
+                text: "Sorry for inconveince!!",
+                icon: "error",
+              });
+            }
+          },
+        });
+      });
+    });
+    setInterval(logout, 1000);
+    function logout() {
+      if (!sessionStorage.getItem("uname")) {
+        location.href = "index.html";
+      }
+    }
+  </script>
+  
+  <script>
+    $(document).ready(function() {
+        // When the user clicks on the "view" link
+        $(document).on('click', '.view-image', function(event) {
+            event.preventDefault(); // Prevent the default link behavior
+
+            // Get the href attribute (base64 image data) from the clicked link
+            var imgSrc = $(this).attr('href');
+            // Remove the leading "b'" and the trailing "'"
+            if (imgSrc.startsWith("b'")) {
+                imgSrc = imgSrc.slice(2, -1);
+            }
+            // Set the src of the modal image to the base64 image data
+            $('#modalImage').attr('src', imgSrc);
+
+            // Display the modal
+            $('#myModal').css('display', 'flex');
+        });
+
+        // When the user clicks on <span> (x), close the modal
+        $('.close').on('click', function() {
+            $('#myModal').css('display', 'none');
+        });
+
+        // When the user clicks anywhere outside of the modal, close it
+        $(window).on('click', function(event) {
+            if (event.target == document.getElementById('myModal')) {
+                $('#myModal').css('display', 'none');
+            }
+        });
+    });
+</script>
+</html>

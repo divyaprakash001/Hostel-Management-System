@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hostel | Dashbord</title>
+    <link rel="shortcut icon" href="hostel-icon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body hidden>
+    <div class="nv" style="color: white">
+      <span class="s1">Dashboard</span>
+      <span class="name"
+        >&nbsp;<i class="fa-solid fa-user"></i> &nbsp;<label
+          style="cursor: pointer"
+          >Username<small>User Type</small></label
+        >&nbsp;&nbsp;<i
+          class="fa-solid fa-caret-down fa-sm"
+          style="color: rgb(133, 128, 129)"
+          id="ns"
+        ></i>
+      </span>
+      <div class="pop" style="color: black">
+        <div onclick="location.href='Profile_Page.html'">Profile</div>
+        <div id="logout" onclick="location.href='index.html'">Logout</div>
+      </div>
+    </div>
+    <aside>
+      <h1 style="cursor: pointer" onclick="location.href='Roomdetail.html'">
+        <a href="Roomdetail.html">Room Details</a>
+      </h1>
+      <hr />
+      <h1 style="cursor: pointer" onclick="location.href='Roomallocation.html'">
+        <a href="Roomallocation.html">Room Allocation</a>
+      </h1>
+      <hr />
+      <h1 style="cursor: pointer" onclick="location.href='Rules.html'">
+        <a href="Rules.html">Rules</a>
+      </h1>
+      <hr />
+      <h1 style="cursor: pointer" onclick="location.href='user.html'">
+        <a href="user.html">User</a>
+      </h1>
+      <hr />
+      <h1 style="cursor: pointer" onclick="location.href='Feedetails.html'">
+        <a href="Feedetails.html">Fee Details</a>
+      </h1>
+    </aside>
+    <section>
+      <div class="main-div-gp">
+        <div class="ur_div">
+          <div onclick="location.href='Roomdetail.html'">
+            <i class="fa-solid fa-person-booth"></i>
+            <span>Room Details</span>
+          </div>
+        </div>
+        <div class="ur_div">
+          <div
+            style="background: #3a98b9"
+            onclick="location.href='Roomallocation.html'"
+          >
+            <i class="fa-solid fa-file-circle-plus"></i>
+            <span>Room Allocation</span>
+          </div>
+        </div>
+        <div class="ur_div">
+          <div
+            style="background-color: #c780fa"
+            onclick="location.href='Rules.html'"
+          >
+            <i class="fa-solid fa-scale-balanced"></i>
+            <span>Rules</span>
+          </div>
+        </div>
+        <div class="ur_div">
+          <div
+            style="background-color: #6e85b7"
+            onclick="location.href='user.html'"
+          >
+            <i class="fa fa-person"></i>
+            <span>User Details</span>
+          </div>
+        </div>
+        <div class="ur_div">
+          <div
+            style="background-color: #7f669d"
+            onclick="location.href='Feedetails.html'"
+          >
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+            <span>Fee Details</span>
+          </div>
+        </div>
+      </div>
+      <div id="graph" >
+        <canvas id="myChart" ></canvas>
+      </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        var uname = sessionStorage.getItem("uname");
+        var user_type = sessionStorage.getItem("user_type");
+        setInterval(logout,1000);
+        if (!uname) {
+          $("body").html("");
+        }
+        else{
+          $('body').removeAttr('hidden');
+        }
+        $(".name").click(function () {
+          if ($(".pop").css("display") == "none") {
+            $(".pop").css({ display: "block" });
+          } else {
+            $(".pop").css({ display: "none" });
+          }
+        });
+        $("aside h1").click(function () {
+          $("aside h1").css({
+            "background-color": "#89CFF3",
+            color: "black",
+            "box-shadow": "none",
+          });
+          $("aside h1 a").css({
+            color: "black",
+          });
+          $(this).css({
+            "background-color": "#0c4a69",
+            "box-shadow": "2px 2px 2px 2px",
+            color: "white",
+            "border-radius": "0.5rem",
+          });
+          $(this).children("a").css({
+            color: "white",
+          });
+        });
+        $(".name").html(
+          '&nbsp;<i class="fa-solid fa-user"></i> &nbsp;' +
+            uname +
+            '(<small style="color:black;">' +
+            user_type +
+            '</small>)&nbsp;&nbsp;<i class="fa-solid fa-caret-down fa-sm" style="color: rgb(252, 18, 57);" id="ns"></i>'
+        );
+        $("#logout").click(function () {
+          window.location.href = "index.html";
+          sessionStorage.removeItem("uname");
+        });
+        $.ajax({
+          method: 'post',
+          url: 'pythonfile/login.py',
+          success: function (data) {
+              if (data.includes('&&')){
+                var jk=data.split('&&')
+                chart('Admin', 'User', jk[0], jk[1]);
+              }
+          }
+      });
+      });
+      function logout(){
+        if (!sessionStorage.getItem("uname")){
+          location.href='index.html'
+        }
+      }
+      function chart(a, b, c, d) {
+        const xValues = [a, b];
+        const yValues = [c, d];
+        const barColors = ["#b91d47", "#00aba9"];
+
+        new Chart("myChart", {
+          type: "pie",
+          data: {
+            labels: xValues,
+            datasets: [
+              {
+                backgroundColor: barColors,
+                data: yValues,
+              },
+            ],
+          },
+          options: {
+            title: {
+              display: true,
+              text: "User Details",
+            },
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

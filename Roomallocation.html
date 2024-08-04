@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel | Room Allocation</title>
+    <link rel="shortcut icon" href="hostel-icon.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/user.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+<!-- <script src="{% static 'js/validation.js' %}"></script> -->
+<!-- <script src="{% static 'js/entry.js' %}"></script> -->
+
+</head>
+<body>
+    <div class="parent">
+        <h2> <i class="fa-solid fa-circle-arrow-left back" onclick="history.back();" title="Go Back" ></i>
+          <i class="fa-solid fa-home back" onclick="location.href='Dashboard.html'" title="Go Dashboard" style="margin-left: 5rem;"></i><span>Room Allocation Entry</span><input type="button" value="Search" id="search_user"></h2>
+        <form enctype="multipart/form-data" method="post">
+            
+            <table>
+                <tr>
+                    <td>
+                        <i class="fa-solid fa-id-card i1"></i>
+                        <label class="l_fixed" for="roomid" hidden>Room ID</label>
+                        <select name="" id="roomid" onchange="$(this).siblings('label').removeAttr('hidden')">
+                            <option value="">---Select Room Id---</option>
+                        </select>
+                        <span> </span>
+                    </td>
+                    <td>
+                        <label class="l_move" for="userid">User Id </label>
+                        <i class="fa-solid fa-id-card i1"></i>
+                        <input required type="text" name="emp_id" id="userid" value="" onfocus="$(this).siblings('label').css({'top':'0%'});"
+                        onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});" list="us_brow">
+                        <datalist id="us_brow"></datalist>
+                        <span> </span>
+                    </td>
+                    
+                    <td>
+                        <label class="l_fixed" for="checkin">Check In</label>
+                        <i class="fa-solid fa-calendar i1"></i>
+                        <input required type="date" id="checkin" onchange="$('#checkout').attr('min',$(this).val())">
+                        <span> </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="l_fixed" for="checkout">Check Out</label>
+                        <i class="fa-solid fa-calendar i1"></i>
+                        <input required type="date" id="checkout" onchange="$('#checkin').attr('max',$(this).val())">
+                        <span> </span>
+                    </td>
+                    
+                    <td>
+                        <label class="l_fixed" for="status" hidden>Status</label>
+                        <i class="fa-solid fa-chart-line i1"></i>
+                        <select name="" id="status" onchange="$(this).siblings('label').removeAttr('hidden')">
+                            <option value="">---Status---</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                        <span></span>
+                    </td>
+                    <td>
+                        <div class="button">
+                            <button id="room_alloc_submit" type="submit" value="Submit" style="background-color: rgb(0, 255, 0); color: black;"> <i
+                                    class="fa-solid fa-arrow-up-from-bracket"></i> &nbsp; Submit </button>
+                            <button type="reset" value="Reset" style="background-color: rgb(0, 208, 255); color: black;"><i
+                                    class="fa-solid fa-rotate-left"></i> Reset </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="scripts/roomallocation.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      var room_id = sessionStorage.getItem("room_allocate");
+      var user_id = sessionStorage.getItem("room_allocate_us");
+      if (room_id) {
+        $.ajax({
+          method: "post",
+          url: "pythonfile/user.py",
+          data: {
+            what: "fetchForRoomAllocUpdate",
+            roomid: room_id,
+            userid:user_id,
+          },
+          success: function (data) {
+            console.log(data);
+            if (data.includes("data fetching successfully")) {
+              sessionStorage.removeItem('room_allocate');
+              sessionStorage.removeItem('room_allocate_us');
+              var data_val = data.split("&&");
+              $('.parent h2 span').html('Room Allocation Update');
+              $("#roomid").val(data_val[0].trim());
+              $("#roomid").change();
+              if(data_val[0].trim()){
+                $('#roomid option').each(function(){
+                    if($(this).val()!=data_val[0].trim()){
+                        $(this).attr('disabled',true);
+                    }
+                })
+              }
+              $("#userid").val(data_val[1].trim());
+              $("#userid").focus();
+              $("#userid").attr('disabled',true);
+              $("#checkin").val(data_val[2].trim());
+              $("#checkout").val(data_val[3].trim());
+              $("#status").val(data_val[4].trim());
+              $("#status").change();
+              $(".button").html('<button type="button" value="Submit" style="background-color: rgb(0, 255, 0); color: black" id="saveData" > <i class="fa-solid fa-arrow-up-from-bracket"></i> &nbsp; Update </button>');
+            }
+            else{
+              swal("Error", "Something went wrong!", "error");
+            }
+          },
+        });
+      }
+      $(document).on("click","#saveData", function (e) {
+        e.preventDefault();
+        $.ajax({
+          method: "post",
+          url: "pythonfile/user.py",
+          data: {
+            what: "savetheRoomAllocupdate",
+            roomid1: $("#roomid").val().trim(),
+            userid1: $("#userid").val().trim(),
+            checkin1: $("#checkin").val().trim(),
+            checkout1: $("#checkout").val().trim(),
+            status1: $("#status").val().trim(),
+        },
+          success: function (data) {
+            console.log(data);
+            if (data.includes("room allocation details successfully updated")) {
+                swal({
+                    title: "Success!",
+                    text: "Room Allocation Updated Successfully",
+                    icon: "success",
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                    sessionStorage.removeItem('room_allocate');
+                    sessionStorage.removeItem('room_allocate_us');
+                    location.reload();
+                  }
+                });
+            } else {
+                swal({
+                    title: "Failed!",
+                    text: "somethings error",
+                    icon: "error",
+                });
+            }
+          },
+        });
+      });
+    });
+    setInterval(logout,1000);
+      function logout(){
+        if (!sessionStorage.getItem("uname")){
+          location.href='index.html'
+        }
+      }
+  </script>
+</html>

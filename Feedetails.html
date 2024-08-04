@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hostel | Fee Details</title>
+    <link rel="stylesheet" href="css/user.css" />
+    <link rel="shortcut icon" href="hostel-icon.png" type="image/x-icon" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
+<!-- <script src="{% static 'js/validation.js' %}"></script> -->
+<!-- <script src="{% static 'js/entry.js' %}"></script> -->
+
+</head>
+<body>
+    <div class="parent">
+        <h2> <i class="fa-solid fa-circle-arrow-left back" onclick="history.back();" title="Go Back" ></i>
+            <i class="fa-solid fa-home back" onclick="location.href='Dashboard.html'" title="Go Dashboard" style="margin-left: 5rem;"></i><span>Fee Details</span><input type="button" value="Search" id="search_user"></h2>
+        <form enctype="multipart/form-data" method="post">
+            
+            <table>
+                <tr>
+                    
+                   
+                    <td>
+                        <label class="l_move" for="Id">User Id </label>
+                        <i class="fa-solid fa-id-card i1"></i>
+                        <input required type="text" name="emp_id" id="id" value="" onfocus="$(this).siblings('label').css({'top':'0%'});" onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});" list="us_brow">
+                        <datalist id="us_brow"></datalist>
+                        <span> </span>
+                    </td>
+                    <td>
+                        <label class="l_move" for="Id">Fee Amount</label>
+                        <i class="fa-solid fa-rupee i1"></i>
+                        <input required type="number" name="fee_amount" id="fee_amt" value="" onfocus="$(this).siblings('label').css({'top':'0%'});" onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});">
+                    </td>
+                    
+                    <td>
+                        <label class="l_fixed" for="dob">Pay Date</label>
+                        <i class="fa-solid fa-calendar i1"></i>
+                        <input required type="date" name="dob" id="paydate">
+                        <span> </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label class="l_fixed" >Pay Mode</label><br>
+                        &nbsp; &nbsp; &nbsp;<input type="radio" name="pay_mode" value="CASH" id="Cash" checked> <label for="Cash">Cash</label> &nbsp; &nbsp;
+                        &nbsp;<input type="radio" name="pay_mode" value="UPI" id="UPI" > <label for="UPI">UPI</label> &nbsp; &nbsp;
+                        &nbsp;<input type="radio" name="pay_mode" value="NEFT" id="NEFT"> <label for="NEFT">NEFT</label>
+                        <span> </span>
+                    </td>
+                    <td>
+                        <label class="l_fixed" for="f_name" hidden>Month Name</label>
+                        <i class="fa-solid fa-chart-line i1"></i>
+                        <!-- <input required type="text" name="father_name" id="month_name" onfocus="alphapets('#f_name')"/> -->
+                        <select name="" id="month_name" onchange="$(this).siblings('label').removeAttr('hidden')" style="text-align: left;padding-left:3rem">
+                            <option value="">---Select Month Name---</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                        <span></span>
+                    </td>
+                    <td>
+                        <label class="l_move" for="f_name">Status</label>
+                        <i class="fa-solid fa-chart-line i1"></i>
+                        <input required type="text" name="father_name" id="status" onfocus="$(this).siblings('label').css({'top':'0%'});" onfocusout="$(this).siblings('label').css({'top': ($(this).val().trim() == '') ? '38%' : '0%'});" />
+                        <span></span>
+                    </td>
+                   
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div class="button">
+                            <button id="fee_submit" type="submit" value="Submit" style="background-color: rgb(0, 255, 0); color: black;"> <i
+                                    class="fa-solid fa-arrow-up-from-bracket"></i> &nbsp; Submit </button>
+                            <button type="reset" value="Reset" style="background-color: rgb(0, 208, 255); color: black;"><i
+                                    class="fa-solid fa-rotate-left"></i> Reset </button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="scripts/feedetails.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    var room_id = sessionStorage.getItem("fee_id");
+    if (room_id) {
+      $.ajax({
+        method: "post",
+        url: "pythonfile/user.py",
+        data: {
+          what: "fetchFeeUpdate",
+          userid: room_id,
+        },
+        success: function (data) {
+          console.log(data);
+          if (data.includes("data fetching successfully!!")) {
+            sessionStorage.removeItem('fee_id');
+            var data_val = data.split("&&");
+            $('.parent h2 span').html('Room Details Update')
+            $("#id").val(data_val[1].trim());
+            $("#id").focus();
+            $("#id").attr('disabled',true);
+            $("#fee_amt").val(parseInt(data_val[2].trim()));
+            $("#fee_amt").focus();
+            $("#paydate").val(data_val[3]);
+            $("#paydate").change();
+            if (data_val[4].trim()=='NEFT')
+                $('#NEFT').prop('checked', true);
+            else if (data_val[4].trim()=='UPI')
+                $('#UPI').prop('checked', true);
+            else if (data_val[4].trim()=='CASH')
+                $('#Cash').prop('checked', true);
+            $("#month_name").val(data_val[5]);
+            $("#month_name").change();
+            $("#status").val(data_val[6]);
+            $("#status").focus();
+            $(".button").html('<button type="button" value="Submit" style="background-color: rgb(0, 255, 0); color: black" id="saveData" > <i class="fa-solid fa-arrow-up-from-bracket"></i> &nbsp; Update </button>');
+          }
+          else{
+            swal("Error", "Something went wrong!", "error");
+          }
+        },
+      });
+    }
+    $(document).on("click","#saveData", function (e) {
+      e.preventDefault();
+      $.ajax({
+        method: "post",
+        url: "pythonfile/user.py",
+        data: {
+          what: "savetheFeeUpdate",
+          id:room_id,
+          userid1: $("#id").val().trim(),
+          fee_amt1: $("#fee_amt").val().trim(),
+          paydate1: $("#paydate").val().trim(),
+          paymode1: $('input[name="pay_mode"]:checked').val(),
+          month_name1: $("#month_name").val().trim(),
+          status1: $("#status").val().trim(),
+        },
+        success: function (data) {
+          console.log(data);
+          if (data.includes("fee details successfully updated")) {
+            swal({
+              title: "Success!",
+              text: "Fee Details updated successfully",
+              icon: "success",
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                sessionStorage.removeItem('fee_id');
+                location.reload();
+              }
+            });
+          }
+          else {
+            swal({
+              title: "Failed!",
+              text: "somethings error",
+              icon: "error",
+            });
+          }
+        },
+      });
+    });
+  })
+  setInterval(logout,1000);
+      function logout(){
+        if (!sessionStorage.getItem("uname")){
+          location.href='index.html'
+        }
+      }
+</script>
+</html>

@@ -1,0 +1,265 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 10px;
+}
+
+.main>h1{
+    text-align: center;
+    background-color: #57A8FF;
+    color: white;
+    font-size: 3.6rem;
+}
+.card {
+    font-size: 1.5rem;
+    margin: 5rem auto;
+    padding: 2rem;
+    position: relative;
+    padding-top:4rem;
+    padding-bottom: 0;
+}
+
+.upper_card{
+    background-color: beige;
+}
+
+.upper_card>span {
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding: 1rem 0;
+    background-color: #0D6EFD;
+    color: white;
+    padding-left: 1.8rem;
+    border-radius: 1rem;
+}
+
+.search_btn,
+.add_btn {
+    background-color: white;
+    width: 8rem;
+    height: 3.5rem;
+    position: absolute;
+    top: 11%;
+    right: 5rem;
+    border: .2rem solid #0D6EFD;
+    border-radius: .8rem;
+    color: #0D6EFD;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.search_btn:hover{
+    box-shadow: 0px 0px 3px 3px white
+}
+
+.add_btn:hover{
+    box-shadow: 0px 0px 3px 3px white
+}
+
+.form_container {
+    margin: 0 3.5rem;
+    padding-bottom: 3rem;
+}
+
+
+
+.search_tab{
+    position: relative;
+    width: 100%;
+    margin: 3rem auto;
+    border-collapse: collapse;
+}
+
+.search_tab td {
+    /* border: 1px solid black; */
+    position: relative;
+    height: 9rem;
+    width: 25%;
+    margin-left: .5rem;
+}
+
+
+.lab {
+    position: absolute;
+    top: 3.2rem;
+    font-size: 1.5rem;
+    left: 1.1rem;
+    transition: .5s;
+    z-index: 999;
+}
+
+label {
+    margin-bottom: .6rem;
+    margin-right: 1rem;
+}
+
+input[type='text'],
+select {
+    /* width: 100%; */
+    height: 4rem;
+    margin: 0 auto;
+    border-radius: .5rem;
+    border: .01rem solid gray;
+    padding-left: 1rem;
+    margin-right: 1.5rem;
+    width: 95%;
+}
+
+input[type='date'] {
+    /* width: 100%; */
+    height: 4rem;
+    margin: 0 auto;
+    border-radius: .5rem;
+    border: .01rem solid gray;
+    padding-left: 1rem;
+    margin-right: 1.5rem;
+    width: 95%;
+}
+
+input[type='text']:focus,
+select:focus {
+    outline: none;
+    /* border: 1px solid #0D6EFD; */
+    /* box-shadow: rgba(194, 102, 102, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px; */
+    box-shadow: 0px 0px 3px 3px #0D6EFD
+}
+
+
+.btn_group {
+    margin-left: 2rem;
+}
+
+.btn_group>.sub_btn {
+    margin-right: .8rem;
+}
+
+.search_sub_btn {
+    background-color: #0D6EFD;
+    color: white;
+    padding: .5rem 1.8rem;
+    border-radius: .5rem;
+    border: none;
+}
+
+.res_btn {
+    background-color: red;
+}
+
+.sub_btn:hover {
+    background-color: #043b8d;
+}
+
+.res_btn:hover {
+    background-color: rgb(154, 6, 6);
+}
+
+/* styling below card */
+
+.below_card{
+    font-size: 1.5rem;
+    margin: 5rem auto;
+    padding: 2rem;
+    /* position: relative; */
+    padding-top:4rem;
+    padding-bottom: 5rem;
+    background-color: aliceblue;
+    overflow-x: scroll;
+    display: none;
+}
+
+.table_container{
+    overflow-x: scroll;
+}
+
+
+.below_card>#below_span{
+    font-size: 2rem;
+    font-weight: 600;
+    /* margin-bottom: 1rem; */
+    width: 100%;
+    padding: 1rem 0;
+    background-color: #0D6EFD;
+    color: white;
+    margin-bottom: 2rem;
+    padding-left: 1.8rem;
+    border-radius: 1rem;
+}
+
+.tab {
+    position: relative;
+    width: 95%;
+    margin: 0rem auto;
+    border-collapse: collapse;
+}
+.tab td{
+   
+    margin-left: .5rem;
+    position: relative;
+    height: 4rem;
+    width: 15%;
+    margin-left: .5rem;
+}
+
+.tab th:nth-child((5)){
+    text-align: center;
+}
+
+.tab,
+.tab th,
+.tab td {
+    border: 1px solid black;border-radius: 1px;
+    /* border-radius: 1px; */
+    padding-left: 1rem;
+}
+
+
+.form_placeholder {
+    width: 100%;
+    background-color: white;
+    /* border: 2px solid red; */
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    padding: 4rem;
+    border-radius: 1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    display: none;
+}
+
+.catupform {
+    font-size: 1.5rem;
+}
+
+.catupform input[type='text'] {
+    margin-bottom: 1rem;
+}
+
+#save {
+    margin-top: 1rem;
+}
+
+.form_placeholder .fa-xmark {
+    position: absolute;
+    right: 2.5%;
+    top: 4%;
+    z-index: 999;
+}
+
+/* ----------------------- */
+
+.tab th{
+    background-color: #0D6EFD;
+    color: white;
+}
+
+
+.del, .update{
+    margin-right: 10px;
+}

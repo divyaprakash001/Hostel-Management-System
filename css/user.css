@@ -1,0 +1,242 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.parent{
+    background-color: white;
+    /* border: 1px solid red; */
+    width: 95%;
+    margin: auto;
+    box-shadow: 0px 0px 5px black;
+    border-radius: 1%;
+    padding: 0.7rem;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+.parent h2{
+    position: relative;
+    padding: 0.5rem;
+    font-size: 2rem;
+    text-align: center;
+    letter-spacing: 1px;
+    border-radius: 0.5rem;
+    background-color: rgb(87, 168, 255);
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    /* raja Css */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: space-between; */
+}
+.parent h2 .back{
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 2.2rem;
+    cursor: pointer;  
+    text-shadow: 0px 0px 5px black; 
+    transition: 0.3s ease-in-out;
+    &:hover{
+        scale: 1.1;
+    } 
+}
+.parent h2 button{
+    float: right;
+    font-size: 1.2rem;
+    background-color: #fff;
+    border-radius: 24px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+    box-sizing: border-box;
+    color: #3c4043;
+    cursor: pointer;
+    padding: 0.3rem 0.8rem;
+    font-weight: 800;
+    outline: none;
+
+    &:hover {
+        background: #F6F9FE;
+        color: blue;
+        
+    }
+
+    &:active{
+        box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
+        border: 2px solid #4285f4;
+    }
+}
+.parent table{
+    width: 100%;
+    padding: 1.7rem;
+}
+.parent table td{
+    position: relative;
+    width: 33.3%;
+    height: 7rem;
+    padding: 1rem;
+}
+.parent table td label{
+   
+    font-size: 1.2rem;
+    color: black;
+    background-color: white;
+}
+.parent table td .l_move{
+    position: absolute;
+    top: 38%;
+    cursor: text;
+    left: 4.5rem;
+    transition: 0.5s;
+}
+.parent table td .l_fixed{
+    position: absolute;
+    top: 0.9rem;
+    left: 2.5rem;
+    color: rgb(76, 76, 76);
+    font-size: 1.2rem;
+}
+.parent table td .i1{
+    position: absolute;
+    top: 40%;
+    /* top: 45%; */
+    left: 2rem;
+    color: rgb(76, 76, 76);
+    font-size: 1.2rem;
+}
+.parent table td input[type='text'],
+.parent table td input[type='date'],
+.parent table td input[type='time'],
+.parent table td input[type='email'],
+.parent table td input[type='file'],
+.parent table td input[type='number'],
+.parent table td input[type='month'] {
+    height: 70%;
+    width: 100%;
+    font-size: 1.2rem;
+    padding-left:3rem;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.7) ;
+    border-radius: 0.5rem;
+}
+.parent table td textarea{
+    width: 100%;
+    resize: none;
+    overflow-x: auto;
+    border: none;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.7) ;
+    outline: none;
+    padding: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.7rem;
+}
+.parent table td input[type='file']::-webkit-file-upload-button{
+    background-color: white;
+    font-size: 1rem;
+    border: 1px solid grey;
+    padding: 0.2rem 1rem;
+    margin-right: 1rem;
+    color: blue;
+    border: 1px solid blue;
+    cursor: pointer;
+    padding-left: 2rem;
+}
+.parent table td .upload{
+    position: absolute;
+    font-size: 1.2rem;
+    top: 10%;
+    color: rgba(0, 0, 255, 0.824);
+    left: 2.3rem;
+}
+.parent table td select{
+    height: 70%;
+    width: 100%;
+    font-size: 1.2rem;
+    text-align: center;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.7) ;
+    border-radius: 0.5rem;
+}
+select option{
+    font-size: 1rem;
+    line-height: 3rem;
+}
+
+.parent table td span{
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    font-size: 1.2rem;
+    color: red;
+    font-weight: 500;
+}
+.parent table td .button{
+    /* border: 1px solid red; */
+    width: 100%;
+    /* margin-left: 25%; */
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.parent table td .button button{
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 12px;
+    border-style: none;
+    box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px, rgba(0, 0, 0, .14) 0 6px 10px 0, rgba(0, 0, 0, .12) 0 1px 18px 0;
+    box-sizing: border-box;
+    font-weight: 800;
+    border: none;
+    outline: none;
+    &:hover {
+        scale: 1.1;
+        transition: 0.3s;
+    }
+}
+
+#search_user{
+    padding: 10px 25px;
+    background-color: white;
+    color: #4285f4;
+    border-radius: 8px;
+    float: right;
+    margin-right: 10px;
+    outline: none;
+    border: 1px solid white;
+    cursor: pointer;
+
+}
+
+#search_user:hover{
+    box-shadow: 0px 0px 3px 3px white
+}
+
+      /* Raja Css */
+@media screen and (max-width:768px) {
+    .parent table td{
+        display: block;
+        width: 100%;
+    }
+    .parent table td .l_fixed{
+        top:0rem;
+    }
+    .parent table td .i1{
+        top:30%;
+    }
+    .parent h2{
+        font-size: 1.2rem;
+    }
+    /* .parent h2 button{
+        font-size: 1rem;
+        padding: .1rem .5rem;
+    } */
+    .parent h2 .back{
+        font-size: 1.5rem;
+        top: .4rem;
+    }
+}

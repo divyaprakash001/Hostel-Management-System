@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Garamond;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  background-color: white;
+}
+
+.main {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.nv {
+  height: 6.8rem;
+  width: 100%;
+  /* border: 2px solid black; */
+  background-color: #00a9ff;
+  box-shadow: 5px 5px 5px 5px;
+}
+
+.pop {
+  position: absolute;
+  height: 10rem;
+  width: 15rem;
+  right: 10rem;
+  top: 6.5rem;
+  background-color: aliceblue;
+  /* visibility: hidden; */
+  display: none;
+  z-index: 1000;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.pop div {
+  width: 100%;
+  height: 50%;
+  font-size: 2rem;
+  text-align: center;
+  padding: 1rem;
+  overflow: hidden;
+  z-index: 1000;
+  border-bottom: 1px solid black;
+  cursor: pointer;
+}
+
+.pop div:hover {
+  font-size: 2.5rem;
+  color: blue;
+  transition: 0.3s;
+}
+
+.s1 {
+  font-size: 4rem;
+  font-weight: bolder;
+  position: absolute;
+  top: 1.5rem;
+  left: 2rem;
+  letter-spacing: 1px;
+}
+
+.name {
+  position: absolute;
+  font-size: 2.5rem;
+  top: 2.5rem;
+  font-weight: bold;
+  right: 9rem;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+
+
+aside {
+  position: absolute;
+  background-color: #89cff3;
+  min-height: 120vh;
+  text-align: center;
+  padding: 1rem;
+}
+
+aside h1 {
+  font-size: 2rem;
+  line-height: 5rem;
+  padding: 0.5rem 2rem;
+  margin: 1rem 0;
+}
+aside h1 a{
+    text-decoration: none;
+    color: black;
+}
+aside h1:first-child {
+  background-color: #0c4a69;
+  box-shadow: 2px 2px 2px 2px;
+  color: white;
+  border-radius: 0.5rem;
+}
+aside h1:first-child a{
+    color: white;
+}
+section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:4rem;
+  /* background-color: black; */
+  width: 86.2%;
+  height: 100%;
+  margin-left: 13.8%;
+  padding: 2rem;
+}
+.main-div-gp{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: inherit;
+  flex-wrap: wrap;
+  gap:4rem;
+}
+section #graph{
+  border-top: solid 1px gainsboro;
+  padding-top: 2rem;
+  width: 100%;
+  /* border: solid 1px red; */
+}
+section #graph #myChart{
+  margin: auto;
+  /* border: solid 1px red; */
+  max-width:60rem;
+}
+section .ur_div{
+  /* height: 100%; */
+  padding: 1rem;
+  width: 25%;
+  border-radius: .5rem;
+  box-shadow: rgba(33, 120, 192, 0.292) 0px 0.0625em 0.0625em, rgba(50, 90, 221, 0.502) 0px 0.125em 0.5em, rgba(16, 199, 219, 0.555) 0px 0px 0px 1px inset;
+  color: white;
+  &:hover{
+    scale: 1.1;
+    transition: .3s ease-in;
+    cursor: pointer;
+  }
+}
+section .ur_div div{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4rem;
+  padding: 2rem;
+  background-color: rgb(192, 59, 59);
+  border-radius: .5rem;
+}
+section .ur_div i{
+  font-size: 4rem;
+  text-shadow: 3px 4px 7px rgba(81,67,21,0.8);
+}
+section .ur_div span{
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 3px 4px 7px rgba(81,67,21,0.8);
+}

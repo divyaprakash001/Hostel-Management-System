@@ -1,0 +1,190 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-size: 10px;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: pink;   */
+}
+.d1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5rem;
+    padding: 1rem;
+    border-radius: 6px;
+    background-color: rgb(248, 247, 247);
+    box-shadow: rgba(33, 120, 192, 0.292) 0px 0.0625em 0.0625em, rgba(50, 90, 221, 0.502) 0px 0.125em 0.5em, rgba(16, 199, 219, 0.555) 0px 0px 0px 1px inset;
+    /* width: 80%; */
+
+    /* height: 40rem; */
+}
+.d2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(253, 129, 129);
+    border-radius: 6px;
+    /* padding: 2rem; */
+}
+.d3{
+    background-color: rgb(221, 220, 220);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem 2rem;
+}
+.d3 h1{
+    /* position: relative; */
+    font-size: 4rem;
+    text-align: center;
+    font-weight: 900;
+    text-shadow: 3px 4px 7px rgba(81,67,21,0.8);
+}
+.d4{
+    margin-top: 5%;
+    width: 100%;
+}
+table{
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+table td{
+    position: relative;
+    height: 6rem;
+}
+#tab2,#tab3{
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+}
+#tab2 td,#tab3 td{
+    height: 6rem;
+    /* border: solid 1px red; */
+}
+table td input,table td select{
+    width: 100%;
+    height: 4rem;
+    padding-left: 3rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: rgb(255, 255, 255);
+}
+/* #tab2 input,#tab2 select,#tab3 input,#tab3 select{
+    height: 4rem;
+} */
+table td i{
+    position: absolute;
+    left: 2%;
+    top: 38%;
+}
+#tab2 td i,#tab3 td i{
+    font-size: 1rem;
+    top: 42%;
+}
+.d6{
+    color: gray;
+}
+.b1{
+    border-radius: 50px;
+    padding: 1rem 3rem;
+    background-color: orangered;
+    color: white;
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+    box-shadow: 3px 4px 7px rgba(81,67,21,0.8);
+}
+.d7{
+    font-weight: bolder;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;  
+    justify-content: center;
+    align-items: center;
+    row-gap: 5rem;
+}
+.d7 h1{
+    font-size: 5rem;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 3px 4px 7px rgba(81,67,21,0.8);
+    word-wrap: break-word;
+    padding: 1rem;
+}
+.d7 p{
+    font-size: 3rem;
+    color: white;
+    text-align: center;
+    line-height: 1.5rem;
+    word-spacing: 4px;
+    text-shadow: 3px 4px 7px rgba(81,67,21,0.8);
+    /* margin-top: 8rem; */
+}
+.d7 .b1{
+    border: solid 1px white;
+    /* margin-top: 8rem; */
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+    box-shadow: 3px 4px 7px rgba(81,67,21,0.8);
+}
+#stu,#emp{
+    width: 1.5rem;
+}
+@media (max-width:998px) {
+    html{
+        font-size:55%;
+    }
+}
+@media (max-width:768px) {
+    html{
+        font-size:45%;
+    }
+    table i{
+        margin-left: -1%;
+    }
+}
+@media (max-width:600px) {
+    html{
+        font-size:35%;
+    }
+    table{
+        font-size: 2rem;
+    }
+    table input{
+        font-size: 1.5rem;
+    }
+    table .b1{
+        font-size: 2rem;
+    }
+    .d7 .b1{
+        font-size: 1.5rem;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    .d7 p{
+        font-size: 1rem;
+    }
+}
+span:hover{
+    cursor: pointer;
+    font-size: 2rem;
+    transition: 0.3s;
+    color: rgb(105, 105, 240);
+}
